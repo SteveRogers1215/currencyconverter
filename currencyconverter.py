@@ -9,7 +9,7 @@ class RealTimeCurrencyConverter():
         self.currencies =  self.data['rates']
 
     def convert(self, from_currency, to_currency, amount):
-        initial_amount = amount
+        
         if from_currency != 'USD' :
             amount = amount / self.currencies[from_currency]
         
@@ -22,7 +22,7 @@ class CurrencyConverter(tk.Tk):
         self.title = 'Currency Converter'
         self.currency_converter = converter
 
-        self.geometry("500x500")
+        self.geometry("500x300")
         self.configure(background='#344e41')
 
         self.intro_label = Label(self,text='Real Time Currency Converter', fg='#dad7cd', bg='#3a5a40', relief=tk.RAISED, borderwidth=3)
@@ -30,8 +30,8 @@ class CurrencyConverter(tk.Tk):
 
         self.date_label = Label(self,text=f"1 Euro equals = {self.currency_converter.convert('EUR','USD',1)} USD \n Date : {self.currency_converter.data['date']}",relief=tk.GROOVE, fg='#dad7cd',bg='#588157', borderwidth=5)
 
-        self.intro_label.place(x=80, y=5)
-        self.date_label.place(x=180,y=50)
+        self.intro_label.place(x=80, y=30)
+        self.date_label.place(x=180,y=80)
 
         valid = (self.register(self.restrictNumberOnly),'%d','%P')
         self.amount_field = Entry(self,bd=3,relief=tk.RIDGE,justify=tk.CENTER,validate='key',validatecommand=valid)
@@ -47,14 +47,14 @@ class CurrencyConverter(tk.Tk):
         self.from_currency_dropdown = ttk.Combobox(self, textvariable=self.from_currency_variable,values=list(self.currency_converter.currencies.keys()),font=font,state='readonly',width=12,justify=tk.CENTER)
         self.to_currency_dropdown =ttk.Combobox(self,textvariable=self.to_currency_variable,values=list(self.currency_converter.currencies.keys()),font=font,state='readonly',width=12,justify=tk.CENTER)
 
-        self.from_currency_dropdown.place(x=30,y=120)
-        self.amount_field.place(x=36,y=150)
-        self.to_currency_dropdown.place(x=340,y=120)
-        self.converted_amount_field_label.place(x=346,y=150)
+        self.from_currency_dropdown.place(x=30,y=150)
+        self.amount_field.place(x=36,y=180)
+        self.to_currency_dropdown.place(x=340,y=150)
+        self.converted_amount_field_label.place(x=346,y=180)
 
         self.convert_button = Button(self,text="Convert",fg='#dad7cd',bg='#a3b18a',command=self.perform)
         self.convert_button.config(font=('Courier',10,'bold'))
-        self.convert_button.place(x=225,y=135)
+        self.convert_button.place(x=225,y=165)
 
     def perform(self):
         amount= float(self.amount_field.get())
