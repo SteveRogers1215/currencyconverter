@@ -22,15 +22,16 @@ class CurrencyConverter(tk.Tk):
         self.title = 'Currency Converter'
         self.currency_converter = converter
 
-        self.geometry("500x200")
+        self.geometry("500x500")
+        self.configure(background='#344e41')
 
-        self.intro_label = Label(self,text='Real Time Currency Converter', fg='blue', relief=tk.RAISED, borderwidth=3)
+        self.intro_label = Label(self,text='Real Time Currency Converter', fg='#dad7cd', bg='#3a5a40', relief=tk.RAISED, borderwidth=3)
         self.intro_label.config(font=('Courier', 15,'bold'))
 
-        self.date_label = Label(self,text=f"1 Euro equals = {self.currency_converter.convert('EUR','USD',1)} USD \n Date : {self.currency_converter.data['date']}",relief=tk.GROOVE, borderwidth=5)
+        self.date_label = Label(self,text=f"1 Euro equals = {self.currency_converter.convert('EUR','USD',1)} USD \n Date : {self.currency_converter.data['date']}",relief=tk.GROOVE, fg='#dad7cd',bg='#588157', borderwidth=5)
 
-        self.intro_label.place(x=20, y=5)
-        self.date_label.place(x=160,y=50)
+        self.intro_label.place(x=80, y=5)
+        self.date_label.place(x=180,y=50)
 
         valid = (self.register(self.restrictNumberOnly),'%d','%P')
         self.amount_field = Entry(self,bd=3,relief=tk.RIDGE,justify=tk.CENTER,validate='key',validatecommand=valid)
@@ -51,7 +52,7 @@ class CurrencyConverter(tk.Tk):
         self.to_currency_dropdown.place(x=340,y=120)
         self.converted_amount_field_label.place(x=346,y=150)
 
-        self.convert_button = Button(self,text="Convert",fg='black',command=self.perform)
+        self.convert_button = Button(self,text="Convert",fg='#dad7cd',bg='#a3b18a',command=self.perform)
         self.convert_button.config(font=('Courier',10,'bold'))
         self.convert_button.place(x=225,y=135)
 
